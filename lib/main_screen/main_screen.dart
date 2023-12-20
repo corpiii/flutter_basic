@@ -1,58 +1,52 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_basic/main_screen/model/timer_manager.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  TimerManager manager;
+
+  MainScreen({super.key, required this.manager});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  Timer? _timer;
-  int _time = 0;
-  bool _isRunning = false;
-  List<String> _lapTimes = [];
+  var _time = 0;
+  Icon _startButtonIcon = Icon(Icons.play_arrow);
+  List<String> _recordList = [];
 
-  void _clickButton() {
-    _isRunning = !_isRunning;
-
-    if (_isRunning) {
-      _start();
-    } else {
-      _pause();
-    }
-  }
-
-  void _start() {
-    _timer = Timer.periodic(Duration(milliseconds: 10), (timer) {
-      setState(() {
-        _time += 1;
-      });
-    });
-  }
-
-  void _pause() {
-    _timer?.cancel();
-  }
-
-  void _reset() {
+  void setTimeCompletion(int value) {
     setState(() {
-      _isRunning = false;
-      _timer?.cancel();
-      _lapTimes.clear();
-      _time = 0;
+      _time = value;
     });
   }
 
-  void _recordLapTime(String time) {
-    _lapTimes.insert(0, '${_lapTimes.length + 1}등 $time');
+  void setIsRunningCompletion(bool value) {
+    setState(() {
+      _startButtonIcon = value ? Icon(Icons.pause) : Icon(Icons.play_arrow);
+    });
+  }
+
+  void setLapTimesCompletion(List<String> value) {
+    setState(() {
+      _recordList = value;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.manager.bind(setTimeCompletion: setTimeCompletion,
+        setIsRunningCompletion: setIsRunningCompletion,
+        setLapTimesCompletion: setLapTimesCompletion);
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    widget.manager.reset();
     super.dispose();
   }
 
@@ -67,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: Column(
         children: [
-           Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -84,7 +78,7 @@ class _MainScreenState extends State<MainScreen> {
             width: 100,
             height: 200,
             child: ListView(
-              children: _lapTimes.map((e) {
+              children: _recordList.map((e) {
                 return Center(child: Text(e));
               }).toList(),
             ),
@@ -94,23 +88,17 @@ class _MainScreenState extends State<MainScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               FloatingActionButton(
-                onPressed: _reset,
+                onPressed: widget.manager.reset,
                 backgroundColor: Colors.orange,
                 child: const Icon(Icons.refresh),
               ),
               FloatingActionButton(
-                onPressed: () {
-                  setState(() {
-                    _clickButton();
-                  });
-                },
-                child: _isRunning ? Icon(Icons.pause) : Icon(Icons.play_arrow),
+                onPressed: widget.manager.toggleRunningState,
+                child: _startButtonIcon,
               ),
               FloatingActionButton(
                 onPressed: () {
-                  setState(() {
-                    _recordLapTime('$second.$hundredth');
-                  });
+                  widget.manager.recordLapTime('$second.$hundredth');
                 },
                 backgroundColor: Colors.green,
                 child: const Icon(Icons.add),
