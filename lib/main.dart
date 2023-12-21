@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'main_screen/main_screen.dart';
+import 'package:flutter_basic/sensor_screen/sensor_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainScreen(),
+      home: SensorScreen(),
     );
   }
 }
