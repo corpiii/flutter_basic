@@ -22,57 +22,34 @@ class _XylophoneScreenState extends State<XylophoneScreen> {
   }
 
   Future<void> initSoundPool() async {
-    int soundId = await rootBundle
-        .load('assets/do1.wav')
-        .then((soundData) => pool.load(soundData));
+    List<Future<int>> loadingSounds = [
+      'assets/do1.wav',
+      'assets/re.wav',
+      'assets/mi.wav',
+      'assets/fa.wav',
+      'assets/sol.wav',
+      'assets/la.wav',
+      'assets/si.wav',
+      'assets/do2.wav'
+    ]
+        .map((soundAsset) => loadSoundAsset(soundAsset))
+        .toList();
 
-    _soundIds.add(soundId);
-
-    soundId = await rootBundle
-        .load('assets/re.wav')
-        .then((soundData) => pool.load(soundData));
-
-    _soundIds.add(soundId);
-
-    soundId = await rootBundle
-        .load('assets/mi.wav')
-        .then((soundData) => pool.load(soundData));
-
-    _soundIds.add(soundId);
-
-    soundId = await rootBundle
-        .load('assets/fa.wav')
-        .then((soundData) => pool.load(soundData));
-
-    _soundIds.add(soundId);
-
-    soundId = await rootBundle
-        .load('assets/sol.wav')
-        .then((soundData) => pool.load(soundData));
-
-    _soundIds.add(soundId);
-
-    soundId = await rootBundle
-        .load('assets/la.wav')
-        .then((soundData) => pool.load(soundData));
-
-    _soundIds.add(soundId);
-
-    soundId = await rootBundle
-        .load('assets/si.wav')
-        .then((soundData) => pool.load(soundData));
-
-    _soundIds.add(soundId);
-
-    soundId = await rootBundle
-        .load('assets/do2.wav')
-        .then((soundData) => pool.load(soundData));
-
-    _soundIds.add(soundId);
+    List<int> loadedSoundIds = await Future.wait(loadingSounds);
 
     setState(() {
+      _soundIds.addAll(loadedSoundIds);
       _isLoading = false;
     });
+  }
+
+  Future<int> loadSoundAsset(String asset) {
+    return rootBundle
+        .load(asset)
+        .then((soundData) {
+          print('$asset done');
+          return pool.load(soundData);
+        });
   }
 
   @override
@@ -118,7 +95,7 @@ class _XylophoneScreenState extends State<XylophoneScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 72.0),
-                  child: gunban('ti', Colors.purpleAccent, _soundIds[7]),
+                  child: gunban('do', Colors.purpleAccent, _soundIds[7]),
                 ),
               ],
             ),
