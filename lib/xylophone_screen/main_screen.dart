@@ -90,49 +90,54 @@ class _XylophoneScreenState extends State<XylophoneScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: gunban('do', Colors.red),
+                  child: gunban('do', Colors.red, _soundIds[0]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  child: gunban('re', Colors.yellow),
+                  child: gunban('re', Colors.yellow, _soundIds[1]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32.0),
-                  child: gunban('mi', Colors.green),
+                  child: gunban('mi', Colors.green, _soundIds[2]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 40.0),
-                  child: gunban('fa', Colors.blue),
+                  child: gunban('fa', Colors.blue, _soundIds[3]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 48.0),
-                  child: gunban('sol', Colors.deepPurpleAccent),
+                  child: gunban('sol', Colors.deepPurpleAccent, _soundIds[4]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 56.0),
-                  child: gunban('la', Colors.cyan),
+                  child: gunban('la', Colors.cyan, _soundIds[5]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 64.0),
-                  child: gunban('ti', Colors.purpleAccent),
+                  child: gunban('ti', Colors.purpleAccent, _soundIds[6]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 72.0),
-                  child: gunban('ti', Colors.purpleAccent),
+                  child: gunban('ti', Colors.purpleAccent, _soundIds[7]),
                 ),
               ],
             ),
     );
   }
 
-  Widget gunban(String text, Color color) {
-    return Container(
-      width: 50,
-      height: double.infinity,
-      color: color,
-      child: Text(
-        text,
-        style: TextStyle(color: Colors.white),
+  Widget gunban(String text, Color color, int soundId) {
+    return GestureDetector(
+      onTap: () {
+        pool.play(soundId);
+      },
+      child: Container(
+        width: 50,
+        height: double.infinity,
+        color: color,
+        child: Text(
+          text,
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
