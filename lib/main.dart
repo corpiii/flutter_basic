@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/xylophone_screen/main_screen.dart';
+import 'package:flutter_basic/xylophone_screen/xylophone_screen.dart';
 
 void main() {
   runApp(const MyApp());
