@@ -7,10 +7,8 @@ class SensorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
     ]);
 
     final centerX = MediaQuery.of(context).size.width / 2 - 50;
@@ -30,11 +28,10 @@ class SensorScreen extends StatelessWidget {
 
               final event = snapshot.data!;
               List<double> accelerometerValues = [event.x, event.y, event.z];
-              print(accelerometerValues);
 
               return Positioned(
-                top: centerY,
-                left: centerX,
+                top: centerY + accelerometerValues[0] * 20,
+                left: centerX + accelerometerValues[1] * 20,
                 child: Container(
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
