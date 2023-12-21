@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class XylophoneScreen extends StatelessWidget {
+class XylophoneScreen extends StatefulWidget {
   const XylophoneScreen({super.key});
 
+  @override
+  State<XylophoneScreen> createState() => _XylophoneScreenState();
+}
+
+class _XylophoneScreenState extends State<XylophoneScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
