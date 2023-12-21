@@ -13,7 +13,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final ImagePicker imagePicker = ImagePicker();
-  late List<XFile> images;
+  List<XFile> images = [];
 
   int _currentPage = 0;
 
