@@ -46,10 +46,7 @@ class _XylophoneScreenState extends State<XylophoneScreen> {
   Future<int> loadSoundAsset(String asset) {
     return rootBundle
         .load(asset)
-        .then((soundData) {
-          print('$asset done');
-          return pool.load(soundData);
-        });
+        .then((soundData) => pool.load(soundData));
   }
 
   @override
