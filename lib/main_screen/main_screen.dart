@@ -14,7 +14,7 @@ class MainScreen extends StatelessWidget {
         const TitleAppBar(),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(12.0),
             child: Image.asset(
                 'assets/starbucks-image/01_01_2023_winter_e-frequency.png'),
           ),
@@ -25,6 +25,18 @@ class MainScreen extends StatelessWidget {
         SliverToBoxAdapter(
           child: quickOrderWidget(),
         ),
+
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Image.asset('assets/starbucks-image/03_01_chrismas_event.png'),
+          ),
+        ),
+
+        SliverToBoxAdapter(
+          child: whatsNewWidget(),
+        ),
+
         SliverToBoxAdapter(
           child: bodyList(),
         ),

@@ -96,7 +96,7 @@ class CardView extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
