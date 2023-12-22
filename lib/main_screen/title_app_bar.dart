@@ -1,42 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import 'start_view.dart';
+
 class TitleAppBar extends StatelessWidget {
   const TitleAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.green,
-      expandedHeight: 300,
+      backgroundColor: Colors.white,
+      expandedHeight: 330,
       floating: false,
       pinned: true,
       toolbarHeight: 0,
       flexibleSpace: FlexibleSpaceBar(
-        background: Lottie.asset(
-          'assets/animation/forest_animation.json',
-          // alignment: Alignment.topCenter,
-          animate: true,
+        background: Stack(
+          children: [
+            Column(
+              children: [
+                Lottie.asset(
+                  'assets/animation/forest_animation.json',
+                  // alignment: Alignment.topCenter,
+                  animate: true,
+                  alignment: Alignment.topCenter,
+                ),
+                StarView(),
+              ],
+            ),
+          ],
         ),
       ),
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(40),
+        preferredSize: Size.fromHeight(30),
         child: Container(
-          height: 40,
+          height: 30,
           margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Center(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _whatsNewWidget(),
-                Container(
-                  width: 10,
-                ),
-                _couponWidget(),
-                Spacer(),
-                Icon(Icons.notifications,color: Colors.white,)
-              ],
-            ),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _whatsNewWidget(),
+                  Container(
+                    width: 10,
+                  ),
+                  _couponWidget(),
+                  Spacer(),
+                  Icon(Icons.notifications,color: Colors.white,)
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -48,7 +62,7 @@ class TitleAppBar extends StatelessWidget {
       children: [
         Icon(
           Icons.mail,
-          color: Colors.white,
+          color: Colors.grey,
         ),
         Container(
           width: 5,
@@ -58,7 +72,6 @@ class TitleAppBar extends StatelessWidget {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: Colors.white,
           ),
         ),
       ],
@@ -70,7 +83,7 @@ class TitleAppBar extends StatelessWidget {
       children: [
         Icon(
           Icons.airplane_ticket,
-          color: Colors.white,
+          color: Colors.grey,
         ),
         Container(
           width: 5,
@@ -80,7 +93,6 @@ class TitleAppBar extends StatelessWidget {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: Colors.white,
           ),
         ),
       ],

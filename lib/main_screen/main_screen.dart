@@ -11,10 +11,17 @@ class MainScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
 
-          TitleAppBar(),
+          const TitleAppBar(),
 
           SliverToBoxAdapter(
-            child: bodyList(),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Image.asset('assets/starbucks-image/01_01_2023_winter_e-frequency.png'),
+            ),
+          ),
+
+          SliverToBoxAdapter(
+            child: Image.asset('assets/starbucks-image/02_01_siren_order.png'),
           ),
 
           SliverToBoxAdapter(
