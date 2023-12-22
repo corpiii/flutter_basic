@@ -11,32 +11,79 @@ class TitleAppBar extends StatelessWidget {
       expandedHeight: 300,
       floating: false,
       pinned: true,
+      toolbarHeight: 0,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Lottie.asset(
+          'assets/animation/forest_animation.json',
+          // alignment: Alignment.topCenter,
+          animate: true,
+        ),
+      ),
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(20),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(
+        preferredSize: Size.fromHeight(40),
+        child: Container(
+          height: 40,
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          child: Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('data'),
-                // Row(
-                //   children: [
-                //     Icon(Icons.mail),
-                //     Text('What\'s New'),
-                //   ],
-                // ),
+                _whatsNewWidget(),
+                Container(
+                  width: 10,
+                ),
+                _couponWidget(),
+                Spacer(),
+                Icon(Icons.notifications,color: Colors.white,)
               ],
             ),
           ),
         ),
       ),
-      flexibleSpace: FlexibleSpaceBar(
-        background: Lottie.asset(
-          'assets/animation/forest_animation.json',
-          alignment: Alignment.topCenter,
-          animate: false,
+    );
+  }
+
+  Widget _whatsNewWidget() {
+    return Row(
+      children: [
+        Icon(
+          Icons.mail,
+          color: Colors.white,
         ),
-      ),
+        Container(
+          width: 5,
+        ),
+        Text(
+          'What\'s New',
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _couponWidget() {
+    return Row(
+      children: [
+        Icon(
+          Icons.airplane_ticket,
+          color: Colors.white,
+        ),
+        Container(
+          width: 5,
+        ),
+        Text(
+          'Coupon',
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }
