@@ -9,6 +9,7 @@ class TitleAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+
       backgroundColor: Colors.white,
       expandedHeight: 330,
       floating: false,

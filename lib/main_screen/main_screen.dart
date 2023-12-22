@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/main_screen/body_list_view.dart';
 import 'package:flutter_basic/main_screen/card_view.dart';
+import 'package:flutter_basic/main_screen/shadow_image_view.dart';
 import 'package:flutter_basic/main_screen/title_app_bar.dart';
 
+import 'beverage_view.dart';
 import 'news_car_view.dart';
 
 class MainScreen extends StatelessWidget {
@@ -11,64 +13,114 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
-      slivers: [
-        const TitleAppBar(),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    offset: Offset(0, 1), // changes position of shadow
-                  ),
-                ]
+      body: CustomScrollView(
+        slivers: [
+          const TitleAppBar(),
+          const SliverToBoxAdapter(
+              child: Padding(
+            padding: EdgeInsets.all(12.0),
+            child: ShadowImageView(
+                imgUrl:
+                    'assets/starbucks-image/01_01_2023_winter_e-frequency.png'),
+          )),
+          const SliverToBoxAdapter(
+            child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/02_01_siren_order.png'),
+          ),
+          SliverToBoxAdapter(
+            child: quickOrderWidget(),
+          ),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 12,
+                right: 12,
               ),
-              child: Image.asset(
-                  'assets/starbucks-image/01_01_2023_winter_e-frequency.png'),
+              child: ShadowImageView(
+                  imgUrl: 'assets/starbucks-image/03_01_chrismas_event.png'),
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: Image.asset('assets/starbucks-image/02_01_siren_order.png'),
-        ),
-        SliverToBoxAdapter(
-          child: quickOrderWidget(),
-        ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 12, right: 12,),
-            child:
-                Image.asset('assets/starbucks-image/03_01_chrismas_event.png'),
+          SliverToBoxAdapter(
+            child: whatsNewWidget(),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: whatsNewWidget(),
-        ),
-
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 12, right: 12),
-            child: Image.asset('assets/starbucks-image/05_01_card.png'),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 12, right: 12),
+              child: ShadowImageView(
+                  imgUrl: 'assets/starbucks-image/05_01_card.png'),
+            ),
           ),
-        ),
-
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 12, right: 12, top: 6),
-            child: Image.asset('assets/starbucks-image/05_02_card.png'),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
+              child: ShadowImageView(
+                  imgUrl: 'assets/starbucks-image/05_02_card.png'),
+            ),
           ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16, top: 16),
+              child: recommandWidget(),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
+              child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/06_01_card.png',
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
+              child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/06_02_card.png',
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
+              child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/06_03_card.png',
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
+              child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/06_04_card.png',
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
+              child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/06_05_card.png',
+              ),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: TextButton(
+        style: TextButton.styleFrom(
+            shape: CircleBorder(),
+            fixedSize: Size(50, 50),
+            backgroundColor: Colors.green),
+        onPressed: () {},
+        child: Image.asset(
+          'assets/delivery_bike.png',
         ),
-
-        SliverToBoxAdapter(
-          child: bodyList(),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          children: [],
         ),
-      ],
-    ));
+      ),
+    );
   }
 
   Widget bodyList() {
@@ -109,7 +161,7 @@ class MainScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           SingleChildScrollView(
@@ -170,7 +222,7 @@ class MainScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           SingleChildScrollView(
@@ -216,7 +268,8 @@ class MainScreen extends StatelessWidget {
                 ),
                 NewsCardView(
                   title: '굿바이 2023 사이즈업 이벤트',
-                  subTitle: '골드 회원 고객님, 사이즈업 쿠폰으로 스타벅스와 함께 연말의 즐거움을 더 크게 느껴보세요.',
+                  subTitle:
+                      '골드 회원 고객님, 사이즈업 쿠폰으로 스타벅스와 함께 연말의 즐거움을 더 크게 느껴보세요.',
                   imgUrl: 'assets/starbucks-image/04_05_cardnews.png',
                   onPressed: () {},
                 ),
@@ -228,6 +281,60 @@ class MainScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget recommandWidget() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          child: RichText(
+              text: TextSpan(children: [
+            TextSpan(
+              text: '이정민',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.brown[400],
+              ),
+            ),
+            const TextSpan(
+                text: '님을 위한 추천메뉴',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                )),
+          ])),
+        ),
+        const SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(children: [
+            BeverageView(
+              imgUrl: 'assets/beverage/dolche_cold_brew.jpg',
+              name: '돌체 콜드 브루',
+            ),
+            BeverageView(
+              imgUrl: 'assets/beverage/ice_starbucks_dolche_latte.jpg',
+              name: '아이스 스타벅스 돌체 라떼',
+            ),
+            BeverageView(
+              imgUrl: 'assets/beverage/ice_caffe_latte.jpg',
+              name: '아이스 카페 라떼',
+            ),
+            BeverageView(
+              imgUrl: 'assets/beverage/caramel_machiato.jpg',
+              name: '카라멜 마키아토',
+            ),
+            BeverageView(
+              imgUrl: 'assets/beverage/ice_caffe_americano.jpg',
+              name: '아이스 카페 아메리카노',
+            ),
+          ]),
+        )
+      ],
     );
   }
 }

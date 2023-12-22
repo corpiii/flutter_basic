@@ -37,6 +37,8 @@ class NewsCardView extends StatelessWidget {
           ),
           Text(
             subTitle,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           )
         ],
       ),
