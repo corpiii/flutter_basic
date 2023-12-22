@@ -17,45 +17,29 @@ class MainScreen extends StatelessWidget {
         slivers: [
           const TitleAppBar(),
           const SliverToBoxAdapter(
-              child: Padding(
-            padding: EdgeInsets.all(12.0),
-            child: ShadowImageView(
-                imgUrl:
-                    'assets/starbucks-image/01_01_2023_winter_e-frequency.png'),
-          )),
-          const SliverToBoxAdapter(
-            child: ShadowImageView(
-                imgUrl: 'assets/starbucks-image/02_01_siren_order.png'),
+              child: ShadowImageView(
+                  imgUrl:
+                      'assets/starbucks-image/01_01_2023_winter_e-frequency.png')),
+          SliverToBoxAdapter(
+            child: Image.asset('assets/starbucks-image/02_01_siren_order.png'),
           ),
           SliverToBoxAdapter(
             child: quickOrderWidget(),
           ),
           const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 12,
-                right: 12,
-              ),
-              child: ShadowImageView(
-                  imgUrl: 'assets/starbucks-image/03_01_chrismas_event.png'),
-            ),
+            child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/03_01_chrismas_event.png'),
           ),
           SliverToBoxAdapter(
             child: whatsNewWidget(),
           ),
           const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(left: 12, right: 12),
-              child: ShadowImageView(
-                  imgUrl: 'assets/starbucks-image/05_01_card.png'),
-            ),
+            child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/05_01_card.png'),
           ),
           const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
-              child: ShadowImageView(
-                  imgUrl: 'assets/starbucks-image/05_02_card.png'),
-            ),
+            child: ShadowImageView(
+                imgUrl: 'assets/starbucks-image/05_02_card.png'),
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -64,43 +48,28 @@ class MainScreen extends StatelessWidget {
             ),
           ),
           const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
-              child: ShadowImageView(
-                imgUrl: 'assets/starbucks-image/06_01_card.png',
-              ),
+            child: ShadowImageView(
+              imgUrl: 'assets/starbucks-image/06_01_card.png',
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
-              child: ShadowImageView(
-                imgUrl: 'assets/starbucks-image/06_02_card.png',
-              ),
+            child: ShadowImageView(
+              imgUrl: 'assets/starbucks-image/06_02_card.png',
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
-              child: ShadowImageView(
-                imgUrl: 'assets/starbucks-image/06_03_card.png',
-              ),
+            child: ShadowImageView(
+              imgUrl: 'assets/starbucks-image/06_03_card.png',
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
-              child: ShadowImageView(
-                imgUrl: 'assets/starbucks-image/06_04_card.png',
-              ),
+            child: ShadowImageView(
+              imgUrl: 'assets/starbucks-image/06_04_card.png',
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(left: 12, right: 12, top: 12),
-              child: ShadowImageView(
-                imgUrl: 'assets/starbucks-image/06_05_card.png',
-              ),
+            child: ShadowImageView(
+              imgUrl: 'assets/starbucks-image/06_05_card.png',
             ),
           ),
         ],

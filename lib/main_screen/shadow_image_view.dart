@@ -7,18 +7,21 @@ class ShadowImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 1), // changes position of shadow
-            ),
-          ]
+    return Padding(
+      padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
+      child: Container(
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(0, 1), // changes position of shadow
+              ),
+            ]
+        ),
+        child: Image.asset(imgUrl),
       ),
-      child: Image.asset(imgUrl),
     );
   }
 }
