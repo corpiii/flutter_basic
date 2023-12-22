@@ -62,9 +62,17 @@ class CardView extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Icon(Icons.location_on_outlined),
+                Icon(Icons.location_on_outlined,
+                  size: 20,
+                  color: Colors.brown[200],),
                 Text(
-                  '우리집앞DT',
+                  'Home Front DT',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    textBaseline: TextBaseline.ideographic,
+                    fontSize: 12,
+                    color: Colors.brown[200],
+                  ),
                 ),
                 Spacer(),
                 SizedBox(
@@ -72,11 +80,11 @@ class CardView extends StatelessWidget {
                   height: 30,
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      backgroundColor: Colors.black,
+                        padding: EdgeInsets.zero,
+                        backgroundColor: Colors.black,
                         shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(45),
-                    )),
+                          borderRadius: BorderRadius.circular(45),
+                        )),
                     onPressed: () {},
                     child: Text(
                       '바로 주문하기',

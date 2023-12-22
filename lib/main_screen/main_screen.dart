@@ -70,6 +70,7 @@ class MainScreen extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: 10,),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
