@@ -8,32 +8,27 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-
-          const TitleAppBar(),
-
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Image.asset('assets/starbucks-image/01_01_2023_winter_e-frequency.png'),
-            ),
+        body: CustomScrollView(
+      slivers: [
+        const TitleAppBar(),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Image.asset(
+                'assets/starbucks-image/01_01_2023_winter_e-frequency.png'),
           ),
-
-          SliverToBoxAdapter(
-            child: Image.asset('assets/starbucks-image/02_01_siren_order.png'),
-          ),
-
-          SliverToBoxAdapter(
-            child: bodyList(),
-          ),
-
-          SliverToBoxAdapter(
-            child: bodyList(),
-          ),
-        ],
-      )
-    );
+        ),
+        SliverToBoxAdapter(
+          child: Image.asset('assets/starbucks-image/02_01_siren_order.png'),
+        ),
+        SliverToBoxAdapter(
+          child: quickOrderWidget(),
+        ),
+        SliverToBoxAdapter(
+          child: bodyList(),
+        ),
+      ],
+    ));
   }
 
   Widget bodyList() {
@@ -45,6 +40,41 @@ class MainScreen extends StatelessWidget {
           height: 400,
           color: Colors.deepPurple[300],
         ),
+      ),
+    );
+  }
+
+  Widget quickOrderWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Quick Order',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              Text(
+                '최근 주문',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -21,7 +21,6 @@ class TitleAppBar extends StatelessWidget {
               children: [
                 Lottie.asset(
                   'assets/animation/forest_animation.json',
-                  // alignment: Alignment.topCenter,
                   animate: true,
                   alignment: Alignment.topCenter,
                 ),
