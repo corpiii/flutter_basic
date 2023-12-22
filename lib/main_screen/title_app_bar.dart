@@ -46,7 +46,10 @@ class TitleAppBar extends StatelessWidget {
                   ),
                   _couponWidget(),
                   Spacer(),
-                  Icon(Icons.notifications,color: Colors.white,)
+                  Icon(
+                    Icons.notifications,
+                    color: Colors.grey,
+                  )
                 ],
               ),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/main_screen/body_list_view.dart';
+import 'package:flutter_basic/main_screen/card_view.dart';
 import 'package:flutter_basic/main_screen/title_app_bar.dart';
 
 class MainScreen extends StatelessWidget {
@@ -33,7 +34,7 @@ class MainScreen extends StatelessWidget {
 
   Widget bodyList() {
     return Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(
@@ -49,7 +50,7 @@ class MainScreen extends StatelessWidget {
       padding: const EdgeInsets.all(24.0),
       child: Column(
         children: [
-          Row(
+          const Row(
             children: [
               Expanded(
                 child: Text(
@@ -69,11 +70,24 @@ class MainScreen extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            children: [
-              
-            ],
-          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CardView(onPressed: () {}),
+                Container(width: 30,),
+                CardView(onPressed: () {}),
+                Container(width: 30,),
+                CardView(onPressed: () {}),
+                Container(width: 30,),
+                CardView(onPressed: () {}),
+                Container(width: 30,),
+                CardView(onPressed: () {}),
+                Container(width: 30,),
+              ],
+            ),
+          )
         ],
       ),
     );
