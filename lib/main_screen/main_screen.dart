@@ -3,12 +3,22 @@ import 'package:flutter_basic/main_screen/body_list_view.dart';
 import 'package:flutter_basic/main_screen/card_view.dart';
 import 'package:flutter_basic/main_screen/shadow_image_view.dart';
 import 'package:flutter_basic/main_screen/title_app_bar.dart';
+import 'package:lottie/lottie.dart';
 
 import 'beverage_view.dart';
+import 'navigation_icon.dart';
 import 'news_car_view.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class MainScreen extends StatefulWidget {
+  MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen>
+    with SingleTickerProviderStateMixin {
+  List<bool> _isTapped = [true, false, false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +31,11 @@ class MainScreen extends StatelessWidget {
                   imgUrl:
                       'assets/starbucks-image/01_01_2023_winter_e-frequency.png')),
           SliverToBoxAdapter(
-            child: Image.asset('assets/starbucks-image/02_01_siren_order.png'),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child:
+                  Image.asset('assets/starbucks-image/02_01_siren_order.png'),
+            ),
           ),
           SliverToBoxAdapter(
             child: quickOrderWidget(),
@@ -43,7 +57,7 @@ class MainScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, top: 16),
+              padding: const EdgeInsets.only(left: 16, top: 10),
               child: recommandWidget(),
             ),
           ),
@@ -52,22 +66,22 @@ class MainScreen extends StatelessWidget {
               imgUrl: 'assets/starbucks-image/06_01_card.png',
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: ShadowImageView(
               imgUrl: 'assets/starbucks-image/06_02_card.png',
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: ShadowImageView(
               imgUrl: 'assets/starbucks-image/06_03_card.png',
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: ShadowImageView(
               imgUrl: 'assets/starbucks-image/06_04_card.png',
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: ShadowImageView(
               imgUrl: 'assets/starbucks-image/06_05_card.png',
             ),
@@ -76,8 +90,8 @@ class MainScreen extends StatelessWidget {
       ),
       floatingActionButton: TextButton(
         style: TextButton.styleFrom(
-            shape: CircleBorder(),
-            fixedSize: Size(50, 50),
+            shape: const CircleBorder(),
+            fixedSize: const Size(50, 50),
             backgroundColor: Colors.green),
         onPressed: () {},
         child: Image.asset(
@@ -85,8 +99,64 @@ class MainScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
+        height: 60,
+        padding: EdgeInsets.zero,
         child: Row(
-          children: [],
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            NavigationIcon(
+                icon: Icons.home,
+                label: 'Home',
+                isTapped: _isTapped[0],
+                onPressed: () {
+                  setState(() {
+                    _isTapped = _isTapped.map((e) => false).toList();
+                    _isTapped[0] = true;
+                  });
+                }),
+            NavigationIcon(
+              icon: Icons.payment_outlined,
+              label: 'Pay',
+              isTapped: _isTapped[1],
+              onPressed: () {
+                setState(() {
+                  _isTapped = _isTapped.map((e) => false).toList();
+                  _isTapped[1] = true;
+                });
+              },
+            ),
+            NavigationIcon(
+                icon: Icons.local_cafe,
+                label: 'Order',
+                isTapped: _isTapped[2],
+                onPressed: () {
+                  setState(() {
+                    _isTapped = _isTapped.map((e) => false).toList();
+                    _isTapped[2] = true;
+                  });
+                }),
+            NavigationIcon(
+              icon: Icons.shopping_bag,
+              label: 'Shop',
+              isTapped: _isTapped[3],
+              onPressed: () {
+                setState(() {
+                  _isTapped = _isTapped.map((e) => false).toList();
+                  _isTapped[3] = true;
+                });
+              },
+            ),
+            NavigationIcon(
+                icon: Icons.more_horiz,
+                label: 'Other',
+                isTapped: _isTapped[4],
+                onPressed: () {
+                  setState(() {
+                    _isTapped = _isTapped.map((e) => false).toList();
+                    _isTapped[4] = true;
+                  });
+                }),
+          ],
         ),
       ),
     );

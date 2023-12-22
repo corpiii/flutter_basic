@@ -9,25 +9,20 @@ class TitleAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-
       backgroundColor: Colors.white,
       expandedHeight: 330,
       floating: false,
       pinned: true,
       toolbarHeight: 0,
       flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
+        background: Column(
           children: [
-            Column(
-              children: [
-                Lottie.asset(
-                  'assets/animation/forest_animation.json',
-                  animate: true,
-                  alignment: Alignment.topCenter,
-                ),
-                StarView(),
-              ],
+            Lottie.asset(
+              'assets/animation/forest_animation.json',
+              animate: true,
+              alignment: Alignment.topCenter,
             ),
+            StarView(),
           ],
         ),
       ),
@@ -49,7 +44,7 @@ class TitleAppBar extends StatelessWidget {
                   Spacer(),
                   Icon(
                     Icons.notifications,
-                    color: Colors.grey,
+                    color: Colors.black54,
                   )
                 ],
               ),
@@ -65,7 +60,7 @@ class TitleAppBar extends StatelessWidget {
       children: [
         Icon(
           Icons.mail,
-          color: Colors.grey,
+          color: Colors.black54,
         ),
         Container(
           width: 5,
@@ -86,7 +81,7 @@ class TitleAppBar extends StatelessWidget {
       children: [
         Icon(
           Icons.airplane_ticket,
-          color: Colors.grey,
+          color: Colors.black54,
         ),
         Container(
           width: 5,
