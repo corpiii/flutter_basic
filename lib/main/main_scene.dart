@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:inflearn/result/result_scene.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -105,14 +106,14 @@ class _MainSceneState extends State<MainScene> {
 
                         save();
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ResultScene(
-                                height: double.parse(_heightController.text),
-                                weight: double.parse(_weightController.text),
-                              )
-                          ),
+                        context.push(
+                          Uri(
+                            path: '/result',
+                            queryParameters: {
+                              'height' : _heightController.text,
+                              'weight' : _weightController.text
+                            },
+                          ).toString(),
                         );
                       }
                     },
