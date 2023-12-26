@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:inflearn/result/result_scene.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScene extends StatefulWidget {
@@ -29,11 +28,11 @@ class _MainSceneState extends State<MainScene> {
     super.dispose();
   }
 
-  Future<void> save() async {
+  Future<void> save(String heightText, String weightText) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setDouble('height', double.parse(_heightController.text));
-    prefs.setDouble('weight', double.parse(_weightController.text));
+    prefs.setDouble('height', double.parse(heightText));
+    prefs.setDouble('weight', double.parse(weightText));
   }
 
   Future<void> load() async {
@@ -104,14 +103,14 @@ class _MainSceneState extends State<MainScene> {
                         final height = _heightController.text;
                         final weight = _weightController.text;
 
-                        save();
+                        save(height, weight);
 
                         context.push(
                           Uri(
                             path: '/result',
                             queryParameters: {
-                              'height' : _heightController.text,
-                              'weight' : _weightController.text
+                              'height' : height,
+                              'weight' : weight
                             },
                           ).toString(),
                         );
