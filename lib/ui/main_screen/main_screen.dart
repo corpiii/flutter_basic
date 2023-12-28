@@ -35,7 +35,19 @@ class MainScreen extends StatelessWidget {
                         ),
                         width: double.infinity,
                         height: MediaQuery.of(context).size.height / 10,
-                        child: Text(models[index].title),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              models[index].title,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   },
