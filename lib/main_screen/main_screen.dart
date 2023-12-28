@@ -5,6 +5,28 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+            itemCount: 3,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: Colors.deepPurple,
+                  ),
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / 10,
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
   }
 }
