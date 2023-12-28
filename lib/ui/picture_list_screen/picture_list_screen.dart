@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/di/repository_provider.dart';
 import 'package:flutter_basic/repository/interface/picture_repository.dart';
+import 'package:flutter_basic/ui/detail_picture_screen/detail_picture_screen.dart';
 
 import '../../model/album.dart';
 import '../../model/picture.dart';
@@ -50,7 +51,6 @@ class PictureListScreen extends StatelessWidget {
 
           var models = snapshot.data!;
 
-
           return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -63,14 +63,28 @@ class PictureListScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.0),
                     child: Container(
                       color: Colors.deepPurple,
-                      child: Image.network(
-                        models[index].thumbnailUrl,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          var httpResponse = error as HttpResponse;
-
-                          return Text('stateCode: ${httpResponse.statusCode}');
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return DetailPictureScreen(
+                                  picture: models[index]);
+                            }, allowSnapshotting: false),
+                          );
                         },
+                        child: Hero(
+                          tag: 'image',
+                          child: Image.network(
+                            models[index].thumbnailUrl,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              var httpResponse = error as HttpResponse;
+
+                              return Text(
+                                  'stateCode: ${httpResponse.statusCode}');
+                            },
+                          ),
+                        ),
                       ),
                     ),
                   ),
