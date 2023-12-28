@@ -1,3 +1,5 @@
+import '../../model/album.dart';
+
 abstract interface class AlbumRepository {
-  Future<void> fetchAllAlbums();
+  Future<List<Album>> fetchAllAlbums();
 }
