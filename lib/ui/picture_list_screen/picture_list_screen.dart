@@ -30,7 +30,29 @@ class PictureListScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Text('test'),
+      body: pictureGridWidget(context),
     );
+  }
+
+  Widget pictureGridWidget(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
+    return GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                color: Colors.deepPurple,
+              ),
+            ),
+          );
+        });
   }
 }
