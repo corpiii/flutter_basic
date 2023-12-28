@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic/di/album_repository_provider.dart';
+import 'package:flutter_basic/repository/interface/album_repository.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  final AlbumRepository _repository = albumRepository;
+
+  MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    _repository.fetchAllAlbums();
     return Scaffold(
       body: SafeArea(
         child: Padding(
