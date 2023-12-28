@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/di/album_repository_provider.dart';
+import 'package:flutter_basic/di/repository_provider.dart';
 import 'package:flutter_basic/repository/interface/album_repository.dart';
 import 'package:flutter_basic/ui/picture_list_screen/picture_list_screen.dart';
 
