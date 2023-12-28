@@ -5,6 +5,6 @@ class AlbumRepositoryImpl implements AlbumRepository {
 
   @override
   Future<void> fetchAllAlbums() async {
-    
+
   }
 }
