@@ -27,6 +27,7 @@ class AlbumListScreen extends StatelessWidget {
                 List<Album> models = snapshot.data!;
 
                 return ListView.builder(
+                  itemCount: models.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                         padding: const EdgeInsets.all(8.0),

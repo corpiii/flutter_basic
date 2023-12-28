@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/di/repository_provider.dart';
 import 'package:flutter_basic/repository/interface/picture_repository.dart';
@@ -40,32 +42,40 @@ class PictureListScreen extends StatelessWidget {
 
   Widget pictureGridWidget(BuildContext context) {
     return FutureBuilder<List<Picture>>(
-      future: _repository.fetchAllPictureByAlbumId(_album.id),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Center(child: CircularProgressIndicator(),);
-        }
+        future: _repository.fetchAllPictureByAlbumId(_album.id),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-        var models = snapshot.data!;
+          var models = snapshot.data!;
 
-        return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            itemCount: models.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
+
+          return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemCount: models.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
-                    color: Colors.deepPurple,
+                    child: Container(
+                      color: Colors.deepPurple,
+                      child: Image.network(
+                        models[index].thumbnailUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          var httpResponse = error as HttpResponse;
+
+                          return Text('stateCode: ${httpResponse.statusCode}');
+                        },
+                      ),
+                    ),
                   ),
-                  child: Text(models[index].thumbnailUrl),
-                ),
-              );
-            });
-      }
-    );
+                );
+              });
+        });
   }
 }
