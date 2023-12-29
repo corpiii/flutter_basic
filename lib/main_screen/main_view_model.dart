@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_basic/main_screen/model/timer_manager.dart';
+import 'model/timer_manager.dart';
 
 class MainViewModel {
   TimerManager _manager = TimerManager();
