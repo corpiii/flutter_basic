@@ -13,30 +13,22 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   var _time = 0;
   Icon _startButtonIcon = Icon(Icons.play_arrow);
-  List<String> _recordList = [];
-
-  void setTimeCompletion(int value) {
-    setState(() {
-      _time = value;
-    });
-  }
-
-  void setIsRunningCompletion(bool value) {
-    setState(() {
-      _startButtonIcon = value ? Icon(Icons.pause) : Icon(Icons.play_arrow);
-    });
-  }
-
-  void setLapTimesCompletion(List<String> value) {
-    setState(() {
-      _recordList = value;
-    });
-  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    widget.viewModel.time.listen((data) {
+      setState(() {
+        _time = data;
+      });
+    });
+
+    widget.viewModel.isRunningStream.listen((data) {
+      setState(() {
+        _startButtonIcon = data == true ? Icon(Icons.pause) : Icon(Icons.play_arrow);
+      });
+    });
   }
 
   @override

@@ -31,6 +31,10 @@ class MainViewModel {
     _time = 0;
     _lapTimes = [];
     _timer?.cancel();
+
+    _timeStreamController.add(0);
+    _isRunningStreamController.add(false);
+    _lapTimesStreamController.add([]);
   }
 
   void recordLapTime(String time) {
