@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/main_screen/model/timer_manager.dart';
+import 'package:flutter_basic/main_screen/model/main_view_model.dart';
 
 class MainScreen extends StatefulWidget {
-  TimerManager manager;
+  MainViewModel viewModel;
 
-  MainScreen({super.key, required this.manager});
+  MainScreen({super.key, required this.viewModel});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -37,14 +37,11 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget.manager.bind(setTimeCompletion: setTimeCompletion,
-        setIsRunningCompletion: setIsRunningCompletion,
-        setLapTimesCompletion: setLapTimesCompletion);
   }
 
   @override
   void dispose() {
-    widget.manager.reset();
+    widget.viewModel.reset();
     super.dispose();
   }
 
@@ -75,10 +72,21 @@ class _MainScreenState extends State<MainScreen> {
           SizedBox(
             width: 100,
             height: 200,
-            child: ListView(
-              children: _recordList.map((e) {
-                return Center(child: Text(e));
-              }).toList(),
+            child: StreamBuilder<List<String>>(
+              stream: widget.viewModel.lapTimesStream,
+              builder: (context, snapshot) {
+                if (snapshot.data == null) {
+                  return Container();
+                }
+
+                var lapTimes = snapshot.data!;
+
+                return ListView(
+                  children: lapTimes.map((e) {
+                      return Text(e);
+                    }).toList(),
+                );
+              }
             ),
           ),
           const Spacer(),
@@ -86,17 +94,17 @@ class _MainScreenState extends State<MainScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               FloatingActionButton(
-                onPressed: widget.manager.reset,
+                onPressed: widget.viewModel.reset,
                 backgroundColor: Colors.orange,
                 child: const Icon(Icons.refresh),
               ),
               FloatingActionButton(
-                onPressed: widget.manager.toggleRunningState,
+                onPressed: widget.viewModel.toggleRunningState,
                 child: _startButtonIcon,
               ),
               FloatingActionButton(
                 onPressed: () {
-                  widget.manager.recordLapTime('$second.$hundredth');
+                  widget.viewModel.recordLapTime('$second.$hundredth');
                 },
                 backgroundColor: Colors.green,
                 child: const Icon(Icons.add),

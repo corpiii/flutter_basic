@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/main_screen/model/timer_manager.dart';
+import 'package:flutter_basic/main_screen/model/main_view_model.dart';
 
 import 'main_screen/main_screen.dart';
 
@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  TimerManager manager = TimerManager();
+  MainViewModel manager = MainViewModel();
 
   MyApp({super.key});
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainScreen(manager: manager,),
+      home: MainScreen(viewModel: manager,),
     );
   }
 }
