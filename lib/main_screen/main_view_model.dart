@@ -1,10 +1,14 @@
 import 'dart:async';
 
+import 'package:flutter_basic/main_screen/model/timer_manager.dart';
+
 class MainViewModel {
-  Timer? _timer;
-  int _time = 0;
+  TimerManager _manager = TimerManager();
+
   bool _isRunning = false;
   List<String> _lapTimes = [];
+
+  Stream<int> get timeStream => _manager.timeStream;
 
   StreamController<List<String>> _lapTimesStreamController = StreamController();
   Stream<List<String>> get lapTimesStream => _lapTimesStreamController.stream;
@@ -12,27 +16,11 @@ class MainViewModel {
   StreamController<bool> _isRunningStreamController = StreamController();
   Stream<bool> get isRunningStream => _isRunningStreamController.stream;
 
-  StreamController<int> _timeStreamController = StreamController();
-  Stream<int> get time => _timeStreamController.stream;
-
-  void _start() {
-    _timer = Timer.periodic(Duration(milliseconds: 10), (timer) {
-      _time = _time + 1;
-      _timeStreamController.add(_time);
-    });
-  }
-
-  void _pause() {
-    _timer?.cancel();
-  }
-
   void reset() {
     _isRunning = false;
-    _time = 0;
     _lapTimes = [];
-    _timer?.cancel();
+    _manager.timerReset();
 
-    _timeStreamController.add(0);
     _isRunningStreamController.add(false);
     _lapTimesStreamController.add([]);
   }
@@ -49,7 +37,7 @@ class MainViewModel {
 
   void toggleRunningState() {
     _isRunning = !_isRunning;
-    _isRunning ? _start() : _pause();
+    _isRunning ? _manager.timerStart() : _manager.timerPause();
     _isRunningStreamController.add(_isRunning);
   }
 }

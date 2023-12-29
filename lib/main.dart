@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/main_screen/model/main_view_model.dart';
+import 'package:flutter_basic/main_screen/main_view_model.dart';
 
 import 'main_screen/main_screen.dart';
 

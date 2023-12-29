@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/main_screen/model/main_view_model.dart';
+import 'package:flutter_basic/main_screen/main_view_model.dart';
 
 class MainScreen extends StatefulWidget {
   MainViewModel viewModel;
@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget.viewModel.time.listen((data) {
+    widget.viewModel.timeStream.listen((data) {
       setState(() {
         _time = data;
       });
