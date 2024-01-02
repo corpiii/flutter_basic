@@ -12,25 +12,28 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MainViewModel>();
-    bool isLoading = viewModel.isLoading;
-    List<ImageItem> list = viewModel.imageItems;
-
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              textFieldWidget(onPressed: (query) {
-                viewModel.searchImage(query);
-              }),
-              SizedBox(height: 20),
-              isLoading == true
-                  ? const Center(child: CircularProgressIndicator())
-                  : imageGridWidget(list),
-            ],
-          ),
+        child: Consumer<MainViewModel>(
+          builder: (_, viewModel, __) {
+            bool isLoading = viewModel.isLoading;
+            List<ImageItem> list = viewModel.imageItems;
+
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  textFieldWidget(onPressed: (query) {
+                    viewModel.searchImage(query);
+                  }),
+                  const SizedBox(height: 20),
+                  isLoading == true
+                      ? const Center(child: CircularProgressIndicator())
+                      : imageGridWidget(list),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
