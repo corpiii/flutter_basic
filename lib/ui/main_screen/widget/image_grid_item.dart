@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/model/image_item.dart';
+import '../../../data/model/image_item.dart';
 
 class ImageGridItem extends StatelessWidget {
   ImageItem image;
