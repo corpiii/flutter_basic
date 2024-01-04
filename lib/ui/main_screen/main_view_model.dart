@@ -16,6 +16,11 @@ class MainViewModel extends StateNotifier<ListState> {
     required String query,
     required void Function(Exception) onError,
   }) async {
+    if (query == '') {
+      onError(Exception('값이 비어있습니다.'));
+      return;
+    }
+
     state = state.copyWith(isLoading: true);
 
     final result = await _repository.getImageItems(query);
