@@ -22,11 +22,11 @@ class MainViewModel extends StateNotifier<ListState> {
 
     switch (result) {
       case ValueResult<List<ImageItem>>():
-        var value = result.asValue!.value;
+        var value = result.asValue.value;
 
         state = state.copyWith(list: value, isLoading: false);
       case ErrorResult():
-        var error = result.asError!.error as Exception;
+        var error = result.asError.error as Exception;
 
         state = state.copyWith(list: [], isLoading: false);
         onError(error);
