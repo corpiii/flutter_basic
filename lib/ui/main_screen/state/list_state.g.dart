@@ -8,10 +8,11 @@ part of 'list_state.dart';
 
 _$ListStateImpl _$$ListStateImplFromJson(Map<String, dynamic> json) =>
     _$ListStateImpl(
-      list: (json['list'] as List<dynamic>)
-          .map((e) => ImageItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      isLoading: json['isLoading'] as bool,
+      list: (json['list'] as List<dynamic>?)
+              ?.map((e) => ImageItem.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      isLoading: json['isLoading'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ListStateImplToJson(_$ListStateImpl instance) =>

@@ -108,7 +108,7 @@ class __$$ListStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ListStateImpl implements _ListState {
   _$ListStateImpl(
-      {required final List<ImageItem> list, required this.isLoading})
+      {final List<ImageItem> list = const [], this.isLoading = false})
       : _list = list;
 
   factory _$ListStateImpl.fromJson(Map<String, dynamic> json) =>
@@ -116,6 +116,7 @@ class _$ListStateImpl implements _ListState {
 
   final List<ImageItem> _list;
   @override
+  @JsonKey()
   List<ImageItem> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
@@ -123,6 +124,7 @@ class _$ListStateImpl implements _ListState {
   }
 
   @override
+  @JsonKey()
   final bool isLoading;
 
   @override
@@ -160,9 +162,8 @@ class _$ListStateImpl implements _ListState {
 }
 
 abstract class _ListState implements ListState {
-  factory _ListState(
-      {required final List<ImageItem> list,
-      required final bool isLoading}) = _$ListStateImpl;
+  factory _ListState({final List<ImageItem> list, final bool isLoading}) =
+      _$ListStateImpl;
 
   factory _ListState.fromJson(Map<String, dynamic> json) =
       _$ListStateImpl.fromJson;

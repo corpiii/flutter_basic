@@ -10,12 +10,19 @@ class MainViewModel extends StateNotifier<ListState> {
       : _repository = repository,
         super(ListState(list: [], isLoading: false));
 
-  void searchImage(String query) async {
+  void searchImage({
+    required String query,
+    required void Function(Exception) onError,
+  }) async {
     state = state.copyWith(isLoading: true);
 
-    final response = await _repository.getImageItems(query);
-    state = state.copyWith(list: response);
+    final result = _repository.getImageItems(query);
 
-    state = state.copyWith(isLoading: false);
+    result.then((value) {
+      state = state.copyWith(list: value, isLoading: false);
+    }, onError: (error) {
+      state = state.copyWith(list: [], isLoading: false);
+      onError(error);
+    });
   }
 }

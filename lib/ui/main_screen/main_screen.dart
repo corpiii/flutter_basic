@@ -20,7 +20,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     _textFieldController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(mainViewModelProvider);
@@ -31,7 +31,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         child: Column(
           children: [
             textFieldWidget(onPressed: (query) {
-              ref.read(mainViewModelProvider.notifier).searchImage(query);
+              ref.read(mainViewModelProvider.notifier).searchImage(
+                  query: query,
+                  onError: showSnackBar);
             }),
             const SizedBox(height: 20),
             state.isLoading == true
@@ -41,6 +43,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         ),
       ),
     );
+  }
+
+  void showSnackBar(Exception error) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('$error'),
+      duration: Duration(seconds: 2),
+    ));
   }
 
   Widget textFieldWidget({required void Function(String query) onPressed}) {
