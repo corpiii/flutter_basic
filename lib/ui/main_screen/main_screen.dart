@@ -48,7 +48,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   void showSnackBar(Exception error) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('$error'),
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 3),
     ));
   }
 

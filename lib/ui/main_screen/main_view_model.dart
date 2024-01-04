@@ -1,3 +1,5 @@
+import 'package:async/async.dart';
+import 'package:flutter_basic/data/model/image_item.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/repository/image_item_repository.dart';
@@ -16,13 +18,18 @@ class MainViewModel extends StateNotifier<ListState> {
   }) async {
     state = state.copyWith(isLoading: true);
 
-    final result = _repository.getImageItems(query);
+    final result = await _repository.getImageItems(query);
 
-    result.then((value) {
-      state = state.copyWith(list: value, isLoading: false);
-    }, onError: (error) {
-      state = state.copyWith(list: [], isLoading: false);
-      onError(error);
-    });
+    switch (result) {
+      case ValueResult<List<ImageItem>>():
+        var value = result.asValue!.value;
+
+        state = state.copyWith(list: value, isLoading: false);
+      case ErrorResult():
+        var error = result.asError!.error as Exception;
+
+        state = state.copyWith(list: [], isLoading: false);
+        onError(error);
+    }
   }
 }
